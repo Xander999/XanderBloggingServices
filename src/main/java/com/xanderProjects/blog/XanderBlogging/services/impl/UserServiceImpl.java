@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     public UserDto update(UserDto userDto, Integer userId) {
         User user = this.userRepo.findById(userId)
                     .orElseThrow(()-> new ResourceNotFoundException("User","User Id ",userId));
-        user.setId(userDto.getId());
+        // user.setId(userDto.getId());
         user.setEmail(userDto.getEmail());
         user.setName(userDto.getName());
         user.setPassword(userDto.getPassword());
@@ -46,7 +46,6 @@ public class UserServiceImpl implements UserService {
 
         User user = this.userRepo.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "User Id", userId));
-        
         return this.userToDto(user);
     }
 
@@ -84,7 +83,7 @@ public class UserServiceImpl implements UserService {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setEmail((user.getEmail()));
-        userDto.setName(user.getEmail());
+        userDto.setName(user.getName());
         userDto.setPassword(user.getPassword());
         userDto.setAbout(user.getAbout());
 

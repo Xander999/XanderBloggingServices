@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xanderProjects.blog.XanderBlogging.payloads.ApiResponse;
 import com.xanderProjects.blog.XanderBlogging.payloads.UserDto;
 import com.xanderProjects.blog.XanderBlogging.services.UserService;
 
@@ -36,20 +37,22 @@ public class UserController {
 
     //Update user
     @PutMapping("/update/{id}")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,@PathVariable Integer id){
+    public ResponseEntity<UserDto> updateUser(
+        @RequestBody UserDto userDto,
+        @PathVariable Integer id){
         UserDto updatedUser = this.userService.update(userDto, id);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     //Get User By Id
-    @GetMapping("/user/{id}")
-    public ResponseEntity<UserDto> getUserById(@RequestParam Integer id){
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable Integer id){
         UserDto getUser = this.userService.getUserById(id);
         return new ResponseEntity<>(getUser, HttpStatus.FOUND);
     }
 
     // Get All Users
-    @GetMapping("/users")
+    @GetMapping("/")
     public ResponseEntity<List<UserDto>> getAllUsers(){
 
         List<UserDto> users = this.userService.getAllUsers();
@@ -59,9 +62,9 @@ public class UserController {
 
     // Delete All Users
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable Integer id){
         this.userService.deleteUser(id);
-        return new ResponseEntity<>(Map.of("message", "User Deleted"), HttpStatus.OK);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("User Deleted Successfully", true), HttpStatus.OK);
     }
 
 }
