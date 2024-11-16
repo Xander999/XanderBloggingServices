@@ -20,6 +20,8 @@ import com.xanderProjects.blog.XanderBlogging.payloads.ApiResponse;
 import com.xanderProjects.blog.XanderBlogging.payloads.UserDto;
 import com.xanderProjects.blog.XanderBlogging.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -29,7 +31,7 @@ public class UserController {
 
     // Create User
     @PostMapping("/create")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
 
         UserDto createdUser = this.userService.createUser(userDto);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
@@ -38,7 +40,7 @@ public class UserController {
     //Update user
     @PutMapping("/update/{id}")
     public ResponseEntity<UserDto> updateUser(
-        @RequestBody UserDto userDto,
+        @Valid @RequestBody UserDto userDto,
         @PathVariable Integer id){
         UserDto updatedUser = this.userService.update(userDto, id);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
