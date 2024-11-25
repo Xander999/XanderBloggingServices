@@ -5,9 +5,13 @@ import java.util.Date;
 import com.xanderProjects.blog.XanderBlogging.entities.Category;
 import com.xanderProjects.blog.XanderBlogging.entities.User;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class PostDto {
 
     private String title;
@@ -18,9 +22,9 @@ public class PostDto {
 
     private Date addedDate;
 
-    private Category category;
+    private CategoryDto category;
 
-    private User user;
+    private UserDto user;
 
 
 }

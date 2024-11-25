@@ -1,6 +1,7 @@
 package com.xanderProjects.blog.XanderBlogging.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +29,7 @@ public class PostController {
     @PathVariable Integer categoryId
     ){
         PostDto createdPost = this.postServiceImpl.createPost(postDto, userId, categoryId);
-        return null;
-
+        return new ResponseEntity<PostDto>(createdPost, HttpStatus.CREATED);
     }
 
 }

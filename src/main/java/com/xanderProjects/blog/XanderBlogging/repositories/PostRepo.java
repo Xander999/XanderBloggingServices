@@ -10,7 +10,7 @@ import com.xanderProjects.blog.XanderBlogging.entities.User;
 
 public interface PostRepo extends JpaRepository<Post, Integer> {
 
-    List<Post> findByClass(User user);
+    List<Post> findByUser(User user);
     List<Post> findByCategory(Category category);
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.xanderProjects.blog.XanderBlogging.entities.Category;
 import com.xanderProjects.blog.XanderBlogging.entities.Post;
@@ -16,6 +17,7 @@ import com.xanderProjects.blog.XanderBlogging.repositories.PostRepo;
 import com.xanderProjects.blog.XanderBlogging.repositories.UserRepo;
 import com.xanderProjects.blog.XanderBlogging.services.PostService;
 
+@Service
 public class PostServiceImpl implements PostService{
 
     @Autowired
@@ -51,7 +53,7 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Post updatePost(PostDto postDto) {
+    public PostDto updatePost(PostDto postDto) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updatePost'");
     }
@@ -63,31 +65,31 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<Post> getAllPost() {
+    public List<PostDto> getAllPost() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAllPost'");
     }
 
     @Override
-    public Post getPostById(Integer postId) {
+    public PostDto getPostById(Integer postId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPostById'");
     }
 
     @Override
-    public List<Post> getPostsByCategory(Integer categoryId) {
+    public List<PostDto> getPostsByCategory(Integer categoryId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPostsByCategory'");
     }
 
     @Override
-    public List<Post> getPostsByUser(Integer userId) {
+    public List<PostDto> getPostsByUser(Integer userId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPostsByUser'");
     }
 
     @Override
-    public List<Post> searchPosts(String keyword) {
+    public List<PostDto> searchPosts(String keyword) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'searchPosts'");
     }
