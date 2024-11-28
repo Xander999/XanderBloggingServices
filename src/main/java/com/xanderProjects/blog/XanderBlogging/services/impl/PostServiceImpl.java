@@ -2,6 +2,8 @@ package com.xanderProjects.blog.XanderBlogging.services.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,26 +68,42 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public List<PostDto> getAllPost() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllPost'");
+       List<Post> allPosts = this.postRepo.findAll();
+       List<PostDto> allPostDto = allPosts.stream()
+                                    .map(post -> this.modelMapper.map(post, PostDto.class))
+                                    .collect(Collectors.toList());
+        return allPostDto;
     }
 
     @Override
     public PostDto getPostById(Integer postId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPostById'");
+        Post receivedPost = this.postRepo.findById(postId)
+                            .orElseThrow(()-> new ResourceNotFoundException("Post", "Post Id", postId));
+        return this.modelMapper.map(receivedPost, PostDto.class);
     }
 
     @Override
     public List<PostDto> getPostsByCategory(Integer categoryId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPostsByCategory'");
+        Category category = this.categoryRepo.findById(categoryId)
+                            .orElseThrow(()->new ResourceNotFoundException("Category", "Category Id", categoryId));
+
+        List<Post> receivedPosts = this.postRepo.findByCategory(category);
+
+        List<PostDto> recePostDtos = receivedPosts.stream()
+                                    .map(post -> this.modelMapper.map(post, PostDto.class))
+                                    .collect(Collectors.toList());
+        return recePostDtos;
     }
 
     @Override
     public List<PostDto> getPostsByUser(Integer userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPostsByUser'");
+        User user = this.userRepo.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "User Id", userId));
+        List<Post> receivedPosts = this.postRepo.findByUser(user);
+        List<PostDto> recePostDtos = receivedPosts.stream()
+                                    .map(post -> this.modelMapper.map(post, PostDto.class))
+                                    .collect(Collectors.toList());
+        return recePostDtos;
     }
 
     @Override
