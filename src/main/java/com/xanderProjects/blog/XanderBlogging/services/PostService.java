@@ -3,6 +3,7 @@ package com.xanderProjects.blog.XanderBlogging.services;
 import java.util.List;
 
 import com.xanderProjects.blog.XanderBlogging.payloads.PostDto;
+import com.xanderProjects.blog.XanderBlogging.payloads.PostResponse;
 
 public interface PostService {
 
@@ -12,7 +13,7 @@ public interface PostService {
 
     //update
 
-    PostDto updatePost(PostDto postDto);
+    PostDto updatePost(PostDto postDto, Integer postId);
 
     //delete
 
@@ -20,7 +21,7 @@ public interface PostService {
 
     // get all post
 
-    List<PostDto> getAllPost();
+    PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 
     // get single post
 
@@ -28,11 +29,11 @@ public interface PostService {
 
     //get all post by Category
 
-    List<PostDto> getPostsByCategory(Integer categoryId);
+    PostResponse getPostsByCategory(Integer categoryId, Integer pageNumber, Integer pageSize);
 
     //get all post by user
 
-    List<PostDto> getPostsByUser(Integer userId);
+    PostResponse getPostsByUser(Integer userId, Integer pageNumber, Integer pageSize);
 
     // search post by keyword
 
