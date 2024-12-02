@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xanderProjects.blog.XanderBlogging.config.AppContants;
 import com.xanderProjects.blog.XanderBlogging.payloads.ApiResponse;
 import com.xanderProjects.blog.XanderBlogging.payloads.PostDto;
 import com.xanderProjects.blog.XanderBlogging.payloads.PostResponse;
@@ -46,10 +47,10 @@ public class PostController {
     // get
     @GetMapping("/")
     public ResponseEntity<PostResponse> getallPost(
-        @RequestParam(value="pageNumber", defaultValue = "0", required = false) Integer pageNumber,
-        @RequestParam(value="pageSize", defaultValue="5", required = false) Integer pageSize,
-        @RequestParam(value = "sortBy", defaultValue = "postId", required = false) String sortBy,
-        @RequestParam(value = "sortDir", defaultValue = "asc", required = false ) String sortDir
+        @RequestParam(value="pageNumber", defaultValue = AppContants.PAGE_NUMBER, required = false) Integer pageNumber,
+        @RequestParam(value="pageSize", defaultValue=AppContants.PAGE_SIZE, required = false) Integer pageSize,
+        @RequestParam(value = "sortBy", defaultValue = AppContants.SORT_BY, required = false) String sortBy,
+        @RequestParam(value = "sortDir", defaultValue = AppContants.SORT_DIRECTION, required = false ) String sortDir
     ) {
         PostResponse allPostResponse = this.postServiceImpl.getAllPost(pageNumber, pageSize, sortBy, sortDir);
         return new ResponseEntity<>(allPostResponse, HttpStatus.OK);
@@ -66,8 +67,8 @@ public class PostController {
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<PostResponse> getPostByCategory(
         @PathVariable Integer categoryId,
-        @RequestParam(value="pageNumber", defaultValue="0", required = false) Integer pageNumber,
-        @RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize
+        @RequestParam(value="pageNumber", defaultValue=AppContants.PAGE_NUMBER, required = false) Integer pageNumber,
+        @RequestParam(value = "pageSize", defaultValue = AppContants.PAGE_SIZE, required = false) Integer pageSize
         ) {
 
         PostResponse receivedPostsResponse = this.postServiceImpl.getPostsByCategory(categoryId, pageNumber, pageSize);
@@ -78,8 +79,8 @@ public class PostController {
     @GetMapping("/user/{userId}")
     public ResponseEntity<PostResponse> getPostByUser(
         @PathVariable Integer userId,
-        @RequestParam(value="pageNumber", defaultValue="0", required = false) Integer pageNumber,
-        @RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize
+        @RequestParam(value="pageNumber", defaultValue=AppContants.PAGE_NUMBER, required = false) Integer pageNumber,
+        @RequestParam(value = "pageSize", defaultValue = AppContants.PAGE_SIZE, required = false) Integer pageSize
         ) {
             PostResponse receivedPostsResponse = this.postServiceImpl.getPostsByUser(userId, pageNumber, pageSize);
 
