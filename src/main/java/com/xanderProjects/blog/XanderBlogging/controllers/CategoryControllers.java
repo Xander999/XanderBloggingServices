@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xanderProjects.blog.XanderBlogging.payloads.ApiResponse;
 import com.xanderProjects.blog.XanderBlogging.payloads.CategoryDto;
-import com.xanderProjects.blog.XanderBlogging.services.impl.CategoryServiceImpl;
+import com.xanderProjects.blog.XanderBlogging.services.CategoryService;
 
 import jakarta.validation.Valid;
 
@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CategoryControllers {
 
     @Autowired
-    private CategoryServiceImpl categoryServiceImpl;
+    private CategoryService categoryServiceImpl;
 
     //create Category
     @PostMapping("/create")

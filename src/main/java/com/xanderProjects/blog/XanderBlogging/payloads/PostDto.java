@@ -1,9 +1,8 @@
 package com.xanderProjects.blog.XanderBlogging.payloads;
 
 import java.util.Date;
-
-import com.xanderProjects.blog.XanderBlogging.entities.Category;
-import com.xanderProjects.blog.XanderBlogging.entities.User;
+import java.util.HashSet;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +26,8 @@ public class PostDto {
     private CategoryDto category;
 
     private UserDto user;
+
+    private Set<CommentDto> comments = new HashSet<>();
 
 
 }
