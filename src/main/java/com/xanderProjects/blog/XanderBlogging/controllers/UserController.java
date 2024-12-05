@@ -1,5 +1,6 @@
 package com.xanderProjects.blog.XanderBlogging.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import com.xanderProjects.blog.XanderBlogging.payloads.UserDto;
 import com.xanderProjects.blog.XanderBlogging.services.UserService;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/users")
@@ -66,5 +69,13 @@ public class UserController {
         this.userService.deleteUser(id);
         return new ResponseEntity<ApiResponse>(new ApiResponse("User Deleted Successfully", true), HttpStatus.OK);
     }
+
+
+    //Show Logged in User
+    @GetMapping("/loggedIn/user")
+    public String getLoggedInUser(Principal principal) {
+        return principal.getName();
+    }
+    
 
 }
